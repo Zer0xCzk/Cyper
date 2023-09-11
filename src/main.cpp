@@ -34,7 +34,9 @@ int main(int argc, char* argv[])
 }
 
 bool jump;
-const int ammount = 10;
+bool gen = false;
+bool wallcling = false;
+const int ammount = 30;
 Object player = { 0, 0, 50, 50, 200, 0};
 Object pastplayer = player;
 Object terrain[ammount] = {0, 0, 0, 0, 0, 0};
@@ -63,6 +65,7 @@ void TerGen()
 			terrain[i].box.y = yoffset + (i * spacing);
 		}
 	}
+	gen = true;
 }
 
 void PosUp(float dt)
@@ -70,18 +73,56 @@ void PosUp(float dt)
 	if (IsKeyDown(SDL_SCANCODE_A))
 	{
 		player.box.x -= (int)(player.speed * dt + 0.5f);
+		if (player.box.x != pastplayer.box.x)
+		{
+			wallcling = false;
+		}
 	}
 	if (IsKeyDown(SDL_SCANCODE_W) && jump)
 	{
 		player.vely = -700;
 		jump = false;
+		wallcling = false;
 	}
 	if (IsKeyDown(SDL_SCANCODE_D))
 	{
 		player.box.x += (int)(player.speed * dt + 0.5f);
+		if (player.box.x != pastplayer.box.x)
+		{
+			wallcling = false;
+		}
 	}
-	player.vely += 15;
-	player.box.y += (int)(player.vely * dt + 0.5f);
+	if (!wallcling) 
+	{
+		player.vely += 15;
+		player.box.y += (int)(player.vely * dt + 0.5f);
+	}
+	if (wallcling)
+	{
+		player.vely = 0;
+	}
+	if (player.box.y + player.box.h > WH)
+	{
+		while (player.box.y > 0)
+		{
+			player.box.y -= 5;
+			for (int i = 0; i < ammount; i++)
+			{
+				terrain[i].box.y -= 5;
+			}
+		}
+	}
+	if (player.box.y < 0)
+	{
+		while (player.box.y + player.box.h < WH)
+		{
+			player.box.y += 5;
+			for (int i = 0; i < ammount; i++)
+			{
+				terrain[i].box.y += 5;
+			}
+		}
+	}
 }
 
 void ColUp(float dt)
@@ -110,20 +151,25 @@ void ColUp(float dt)
 		{
 			player.box.x = terrain[i].box.x - player.box.w;
 			jump = true;
+			wallcling = true;
 		}
 		//Keeps the player to the right of a rectangle
 		else if (SDL_PointInRect(&left_bottom, &terrain[i].box) || SDL_PointInRect(&left_top, &terrain[i].box))
 		{
 			player.box.x = terrain[i].box.x + terrain[i].box.w;
 			jump = true;
+			wallcling = true;
 		}
 	}
-	pastplayer = player;
 }
 
 void Update(float dt)
 {
-	TerGen();
+	pastplayer = player;
+	if (!gen) 
+	{
+		TerGen();
+	}
 	PosUp(dt);
 	ColUp(dt);
 	if (IsKeyDown(SDL_SCANCODE_ESCAPE))
