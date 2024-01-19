@@ -45,8 +45,8 @@ Object terrain[ammount] = {0, 0, 0, 0, 0, 0};
 
 void TerGen()
 {
-	int spacing = 150;
-	int xoffset = 75;
+	int spacing = 200;
+	int xoffset = -50;
 	int yoffset = 75;
 	for (int i = 0; i < ammount; i++)
 	{
@@ -101,6 +101,17 @@ void PosUp(float dt)
 	{
 		player.vely = 0;
 	}
+	if (player.box.x + player.box.w > WW)
+	{
+		while (player.box.x > 0)
+		{
+			player.box.x -= 5;
+			for (int i = 0; i < ammount; i++)
+			{
+				terrain[i].box.x -= 5;
+			}
+		}
+	}
 	if (player.box.y + player.box.h > WH)
 	{
 		while (player.box.y > 0)
@@ -120,6 +131,17 @@ void PosUp(float dt)
 			for (int i = 0; i < ammount; i++)
 			{
 				terrain[i].box.y += 5;
+			}
+		}
+	}
+	if (player.box.x < 0)
+	{
+		while (player.box.x + player.box.w < WW)
+		{
+			player.box.x += 5;
+			for (int i = 0; i < ammount; i++)
+			{
+				terrain[i].box.x += 5;
 			}
 		}
 	}
