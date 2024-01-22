@@ -39,7 +39,11 @@ bool wallcling = false;
 const int ammount = 30;
 Object player = { 0, 0, 50, 50, 200, 0};
 Object pastplayer = player;
-Object terrain[ammount] = {0, 0, 0, 0, 0, 0};
+Object terrain[ammount] = { 0, 0, 0, 0, 0, 0};
+Object gun = { 25, 0, 50, 10, 0, 0};
+double gunAngle;
+SDL_Point playerCenter = {player.box.x + player.box.w / 2, player.box.y + player.box.h / 2};
+SDL_Point mouse;
 
 //=============================================================================
 
@@ -70,6 +74,14 @@ void TerGen()
 
 void PosUp(float dt)
 {
+	//Put the gun next to the player
+	SDL_GetMouseState(&mouse.x, &mouse.y);
+	//Find the angle at which the gun is
+	//Shamelessly stolen from jordsti on stack
+	int delta_x = playerCenter.x - mouse.x;
+	int delta_y = playerCenter.y - mouse.y;
+	gunAngle = (atan2(delta_y, delta_x)*180.0000)/3.14159;
+	//Movement
 	if (IsKeyDown(SDL_SCANCODE_A))
 	{
 		player.box.x -= (int)(player.speed * dt + 0.5f);
@@ -92,6 +104,7 @@ void PosUp(float dt)
 			wallcling = false;
 		}
 	}
+	//Check if we're clinging to a wall
 	if (!wallcling) 
 	{
 		player.vely += 15;
@@ -101,6 +114,8 @@ void PosUp(float dt)
 	{
 		player.vely = 0;
 	}
+	//TODO: Make it U->D->L->R
+	//Right transition
 	if (player.box.x + player.box.w > WW)
 	{
 		while (player.box.x > 0)
@@ -112,6 +127,7 @@ void PosUp(float dt)
 			}
 		}
 	}
+	//Down transition
 	if (player.box.y + player.box.h > WH)
 	{
 		while (player.box.y > 0)
@@ -123,6 +139,7 @@ void PosUp(float dt)
 			}
 		}
 	}
+	//Up transition
 	if (player.box.y < 0)
 	{
 		while (player.box.y + player.box.h < WH)
@@ -134,6 +151,7 @@ void PosUp(float dt)
 			}
 		}
 	}
+	//Left transition
 	if (player.box.x < 0)
 	{
 		while (player.box.x + player.box.w < WW)
@@ -214,4 +232,7 @@ void RenderFrame(float interpolation)
 	{
 		SDL_RenderFillRect(gRenderer, &terrain[i].box);
 	}
+	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
+	SDL_RenderFillRect(gRenderer, &gun.box);
+	SDL_RenderCopyEx(gRenderer, NULL, NULL, &gun.box, 90/*gunAngle*/, &playerCenter, SDL_FLIP_NONE);
 }

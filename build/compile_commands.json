@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/home/zerox/Cyper/build",
+  "command": "/usr/bin/clang++ -isystem /usr/include/SDL2 -g -std=gnu++11 -Wall -Wextra -pedantic -Werror -Wconversion -Wshadow -Wno-unused-parameter -o CMakeFiles/SDLGame.dir/src/engine.cpp.o -c /home/zerox/Cyper/src/engine.cpp",
+  "file": "/home/zerox/Cyper/src/engine.cpp",
+  "output": "CMakeFiles/SDLGame.dir/src/engine.cpp.o"
+},
+{
+  "directory": "/home/zerox/Cyper/build",
+  "command": "/usr/bin/clang++ -isystem /usr/include/SDL2 -g -std=gnu++11 -Wall -Wextra -pedantic -Werror -Wconversion -Wshadow -Wno-unused-parameter -o CMakeFiles/SDLGame.dir/src/main.cpp.o -c /home/zerox/Cyper/src/main.cpp",
+  "file": "/home/zerox/Cyper/src/main.cpp",
+  "output": "CMakeFiles/SDLGame.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/zerox/Cyper/build",
+  "command": "/usr/bin/clang++ -isystem /usr/include/SDL2 -g -std=gnu++11 -Wall -Wextra -pedantic -Werror -Wconversion -Wshadow -Wno-unused-parameter -o CMakeFiles/SDLGame.dir/src/sprite.cpp.o -c /home/zerox/Cyper/src/sprite.cpp",
+  "file": "/home/zerox/Cyper/src/sprite.cpp",
+  "output": "CMakeFiles/SDLGame.dir/src/sprite.cpp.o"
+}
+]
