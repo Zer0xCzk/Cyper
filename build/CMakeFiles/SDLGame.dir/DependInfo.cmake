@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/zerox/Cyper/src/engine.cpp" "CMakeFiles/SDLGame.dir/src/engine.cpp.o" "gcc" "CMakeFiles/SDLGame.dir/src/engine.cpp.o.d"
-  "/home/zerox/Cyper/src/main.cpp" "CMakeFiles/SDLGame.dir/src/main.cpp.o" "gcc" "CMakeFiles/SDLGame.dir/src/main.cpp.o.d"
-  "/home/zerox/Cyper/src/sprite.cpp" "CMakeFiles/SDLGame.dir/src/sprite.cpp.o" "gcc" "CMakeFiles/SDLGame.dir/src/sprite.cpp.o.d"
+  "/home/zerox/GIT/Cyper/src/engine.cpp" "CMakeFiles/SDLGame.dir/src/engine.cpp.o" "gcc" "CMakeFiles/SDLGame.dir/src/engine.cpp.o.d"
+  "/home/zerox/GIT/Cyper/src/main.cpp" "CMakeFiles/SDLGame.dir/src/main.cpp.o" "gcc" "CMakeFiles/SDLGame.dir/src/main.cpp.o.d"
+  "/home/zerox/GIT/Cyper/src/sprite.cpp" "CMakeFiles/SDLGame.dir/src/sprite.cpp.o" "gcc" "CMakeFiles/SDLGame.dir/src/sprite.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

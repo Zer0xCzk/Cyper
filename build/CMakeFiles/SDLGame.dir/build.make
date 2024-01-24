@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/zerox/Cyper
+CMAKE_SOURCE_DIR = /home/zerox/GIT/Cyper
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/zerox/Cyper/build
+CMAKE_BINARY_DIR = /home/zerox/GIT/Cyper/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/SDLGame.dir/depend.make
@@ -70,46 +70,46 @@ include CMakeFiles/SDLGame.dir/progress.make
 include CMakeFiles/SDLGame.dir/flags.make
 
 CMakeFiles/SDLGame.dir/src/engine.cpp.o: CMakeFiles/SDLGame.dir/flags.make
-CMakeFiles/SDLGame.dir/src/engine.cpp.o: /home/zerox/Cyper/src/engine.cpp
+CMakeFiles/SDLGame.dir/src/engine.cpp.o: /home/zerox/GIT/Cyper/src/engine.cpp
 CMakeFiles/SDLGame.dir/src/engine.cpp.o: CMakeFiles/SDLGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/zerox/Cyper/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/SDLGame.dir/src/engine.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SDLGame.dir/src/engine.cpp.o -MF CMakeFiles/SDLGame.dir/src/engine.cpp.o.d -o CMakeFiles/SDLGame.dir/src/engine.cpp.o -c /home/zerox/Cyper/src/engine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/zerox/GIT/Cyper/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/SDLGame.dir/src/engine.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SDLGame.dir/src/engine.cpp.o -MF CMakeFiles/SDLGame.dir/src/engine.cpp.o.d -o CMakeFiles/SDLGame.dir/src/engine.cpp.o -c /home/zerox/GIT/Cyper/src/engine.cpp
 
 CMakeFiles/SDLGame.dir/src/engine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SDLGame.dir/src/engine.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zerox/Cyper/src/engine.cpp > CMakeFiles/SDLGame.dir/src/engine.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zerox/GIT/Cyper/src/engine.cpp > CMakeFiles/SDLGame.dir/src/engine.cpp.i
 
 CMakeFiles/SDLGame.dir/src/engine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SDLGame.dir/src/engine.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zerox/Cyper/src/engine.cpp -o CMakeFiles/SDLGame.dir/src/engine.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zerox/GIT/Cyper/src/engine.cpp -o CMakeFiles/SDLGame.dir/src/engine.cpp.s
 
 CMakeFiles/SDLGame.dir/src/main.cpp.o: CMakeFiles/SDLGame.dir/flags.make
-CMakeFiles/SDLGame.dir/src/main.cpp.o: /home/zerox/Cyper/src/main.cpp
+CMakeFiles/SDLGame.dir/src/main.cpp.o: /home/zerox/GIT/Cyper/src/main.cpp
 CMakeFiles/SDLGame.dir/src/main.cpp.o: CMakeFiles/SDLGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/zerox/Cyper/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/SDLGame.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SDLGame.dir/src/main.cpp.o -MF CMakeFiles/SDLGame.dir/src/main.cpp.o.d -o CMakeFiles/SDLGame.dir/src/main.cpp.o -c /home/zerox/Cyper/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/zerox/GIT/Cyper/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/SDLGame.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SDLGame.dir/src/main.cpp.o -MF CMakeFiles/SDLGame.dir/src/main.cpp.o.d -o CMakeFiles/SDLGame.dir/src/main.cpp.o -c /home/zerox/GIT/Cyper/src/main.cpp
 
 CMakeFiles/SDLGame.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SDLGame.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zerox/Cyper/src/main.cpp > CMakeFiles/SDLGame.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zerox/GIT/Cyper/src/main.cpp > CMakeFiles/SDLGame.dir/src/main.cpp.i
 
 CMakeFiles/SDLGame.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SDLGame.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zerox/Cyper/src/main.cpp -o CMakeFiles/SDLGame.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zerox/GIT/Cyper/src/main.cpp -o CMakeFiles/SDLGame.dir/src/main.cpp.s
 
 CMakeFiles/SDLGame.dir/src/sprite.cpp.o: CMakeFiles/SDLGame.dir/flags.make
-CMakeFiles/SDLGame.dir/src/sprite.cpp.o: /home/zerox/Cyper/src/sprite.cpp
+CMakeFiles/SDLGame.dir/src/sprite.cpp.o: /home/zerox/GIT/Cyper/src/sprite.cpp
 CMakeFiles/SDLGame.dir/src/sprite.cpp.o: CMakeFiles/SDLGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/zerox/Cyper/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/SDLGame.dir/src/sprite.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SDLGame.dir/src/sprite.cpp.o -MF CMakeFiles/SDLGame.dir/src/sprite.cpp.o.d -o CMakeFiles/SDLGame.dir/src/sprite.cpp.o -c /home/zerox/Cyper/src/sprite.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/zerox/GIT/Cyper/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/SDLGame.dir/src/sprite.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SDLGame.dir/src/sprite.cpp.o -MF CMakeFiles/SDLGame.dir/src/sprite.cpp.o.d -o CMakeFiles/SDLGame.dir/src/sprite.cpp.o -c /home/zerox/GIT/Cyper/src/sprite.cpp
 
 CMakeFiles/SDLGame.dir/src/sprite.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/SDLGame.dir/src/sprite.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zerox/Cyper/src/sprite.cpp > CMakeFiles/SDLGame.dir/src/sprite.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zerox/GIT/Cyper/src/sprite.cpp > CMakeFiles/SDLGame.dir/src/sprite.cpp.i
 
 CMakeFiles/SDLGame.dir/src/sprite.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/SDLGame.dir/src/sprite.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zerox/Cyper/src/sprite.cpp -o CMakeFiles/SDLGame.dir/src/sprite.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zerox/GIT/Cyper/src/sprite.cpp -o CMakeFiles/SDLGame.dir/src/sprite.cpp.s
 
 # Object files for target SDLGame
 SDLGame_OBJECTS = \
@@ -131,7 +131,7 @@ SDLGame: /usr/lib/libSDL2_ttf.so
 SDLGame: /usr/lib/libSDL2main.a
 SDLGame: /usr/lib/libSDL2.so
 SDLGame: CMakeFiles/SDLGame.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/zerox/Cyper/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable SDLGame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/zerox/GIT/Cyper/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable SDLGame"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SDLGame.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -143,6 +143,6 @@ CMakeFiles/SDLGame.dir/clean:
 .PHONY : CMakeFiles/SDLGame.dir/clean
 
 CMakeFiles/SDLGame.dir/depend:
-	cd /home/zerox/Cyper/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zerox/Cyper /home/zerox/Cyper /home/zerox/Cyper/build /home/zerox/Cyper/build /home/zerox/Cyper/build/CMakeFiles/SDLGame.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/zerox/GIT/Cyper/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zerox/GIT/Cyper /home/zerox/GIT/Cyper /home/zerox/GIT/Cyper/build /home/zerox/GIT/Cyper/build /home/zerox/GIT/Cyper/build/CMakeFiles/SDLGame.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/SDLGame.dir/depend
 

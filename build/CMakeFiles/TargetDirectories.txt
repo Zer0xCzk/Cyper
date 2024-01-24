@@ -1,3 +1,3 @@
-/home/zerox/Cyper/build/CMakeFiles/SDLGame.dir
-/home/zerox/Cyper/build/CMakeFiles/edit_cache.dir
-/home/zerox/Cyper/build/CMakeFiles/rebuild_cache.dir
+/home/zerox/GIT/Cyper/build/CMakeFiles/SDLGame.dir
+/home/zerox/GIT/Cyper/build/CMakeFiles/edit_cache.dir
+/home/zerox/GIT/Cyper/build/CMakeFiles/rebuild_cache.dir

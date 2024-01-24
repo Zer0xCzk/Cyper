@@ -1,4 +1,4 @@
-# Install script for directory: /home/zerox/Cyper
+# Install script for directory: /home/zerox/GIT/Cyper
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/zerox/Cyper/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/zerox/GIT/Cyper/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
