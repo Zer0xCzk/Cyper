@@ -1,1 +1,6 @@
 /build
+/build/CMakeFiles
+/build/CMakeCache.txt
+/build/Makefile
+/build/SDLGame
+/build/cmake_install.cmake
