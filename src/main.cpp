@@ -40,18 +40,21 @@ int main(int argc, char* argv[])
 
 
 
-bool jump;
+bool jump = true;
 bool gen = false;
 bool wallcling = false;
+bool stomp = false;
 const int ammount = 30;
-Object player = { 0, 0, 50, 50, 200, 0};
+Object player = { 0, 600, 50, 50, 800, 0};
 Object pastplayer = player;
 Object terrain[ammount] = { 0, 0, 0, 0, 0, 0};
 unsigned int level = 0;
+int horChunk = 0, verChunk = 0;
 int deltaX, deltaY, mouseX, mouseY;
 double result;
 Object gun = {0, 0, 50, 20, 0, 0};
-SDL_Point gunCenter = {0, 0};
+SDL_Point playerCenter = {0, 0};
+SDL_Point rotationCenter = {-20 - player.box.w / 2, gun.box.h / 2};
 
 //=============================================================================
 
@@ -82,24 +85,31 @@ void TerGen()
 	}
 	gen = true;
 	*/
-	switch (level)
-	{
+	switch (level) {
 	// LEVEL 0: Tutorial
 	case 0:
-		terrain[20].box.x = 0;
-		terrain[20].box.y = 100;
-		terrain[20].box.w = 200;
-		terrain[20].box.h = 20;
 		//L0Start
-		terrain[1].box.x = 0;
-		terrain[1].box.w = WW / 4;
-		terrain[1].box.y = WH - 200;
-		terrain[1].box.h = 200;
+		terrain[0].box.x = 0;
+		terrain[0].box.w = WW / 4;
+		terrain[0].box.y = WH - 200;
+		terrain[0].box.h = 200;
 		//L0Main
-		terrain[2].box.x = terrain[1].box.w + 100;
-		terrain[2].box.w = WW/2;
-		terrain[2].box.y = terrain[1].box.y - 100;
-		terrain[2].box.h = 50;
+		terrain[1].box.x = terrain[0].box.w + 100;
+		terrain[1].box.w = WW/2;
+		terrain[1].box.y = terrain[0].box.y - 100;
+		terrain[1].box.h = 50;
+		
+		terrain[2].box.x = terrain[1].box.x + terrain[1].box.w;
+		terrain[2].box.w = 50;
+		terrain[2].box.y = terrain[1].box.y - 2000;
+		terrain[2].box.h = 2000;
+		
+		terrain[3].box.x = terrain[2].box.x - 400;
+		terrain[3].box.w = 50;
+		terrain[3].box.y = terrain[2].box.y - 100;
+		terrain[3].box.h = 2000;
+
+
 	}
 
 	gen = true;
@@ -107,60 +117,58 @@ void TerGen()
 
 void PosUp(float dt)
 {
-	gun.box.x = player.box.x;
-	gun.box.y = player.box.y;
-	gunCenter.x = gun.box.x + (gun.box.w / 2);
-	gunCenter.y = gun.box.y + (gun.box.h / 2);
+	//Gun rotation
+	//TODO: Better description of what the fuck is happening
+	gun.box.x = player.box.x + player.box.w + 20;
+	gun.box.y = player.box.y + player.box.h / 2 - gun.box.h / 2;
+	playerCenter.x = player.box.x + (player.box.w / 2);
+	playerCenter.y = player.box.y + (player.box.h / 2);
 	SDL_GetMouseState(&mouseX, &mouseY);
-   	deltaX = player.box.x - mouseX;
-	deltaY = player.box.y - mouseY;
-   	result = (atan2(-deltaX, deltaY) * 180.00000) / 3.141592;
-
+   	deltaX = mouseX - playerCenter.x;
+	deltaY = mouseY - playerCenter.y;
+   	result = (atan2(deltaY, deltaX) * 180.00000) / M_PI;
+	rotationCenter = {-20 - player.box.w / 2, gun.box.h / 2};
+	
 	//Movement
-	if (IsKeyDown(SDL_SCANCODE_A))
-	{
+	if (IsKeyDown(SDL_SCANCODE_A) && !stomp) {
 		player.box.x -= (int)(player.speed * dt + 0.5f);
-		if (player.box.x != pastplayer.box.x)
-		{
+		if (player.box.x != pastplayer.box.x) {
 			wallcling = false;
 		}
 	}
-	if (IsKeyDown(SDL_SCANCODE_W) && jump)
-	{
-		player.vely = -700;
+	if (IsKeyDown(SDL_SCANCODE_W) && jump && !wallcling) {
+		player.vely = -800;
 		jump = false;
 		wallcling = false;
 	}
-	if (IsKeyDown(SDL_SCANCODE_D))
-	{
+	if (IsKeyDown(SDL_SCANCODE_D) && !stomp) {
 		player.box.x += (int)(player.speed * dt + 0.5f);
-		if (player.box.x != pastplayer.box.x)
-		{
+		if (player.box.x != pastplayer.box.x) {
 			wallcling = false;
 		}
 	}
+	if (IsKeyDown(SDL_SCANCODE_S) && !wallcling){
+		player.vely = 2000;
+		stomp = true;
+	}
 	//Check if we're clinging to a wall
-	if (!wallcling) 
-	{
-		player.vely += 15;
+	if (!wallcling) {
+		player.vely += 20;
 		player.box.y += (int)(player.vely * dt + 0.5f);
 	}
-	if (wallcling)
-	{
+	if (wallcling) {
 		player.vely = 0;
 	}
 	//TODO: Make it U->D->L->R
 	//Right transition
-	if (player.box.x + player.box.w > WW)
-	{
-		while (player.box.x > 0)
-		{
+	if (player.box.x + player.box.w > WW) {
+		while (player.box.x > 0) {
 			player.box.x -= 5;
-			for (int i = 0; i < ammount; i++)
-			{
+			for (int i = 0; i < ammount; i++) {
 				terrain[i].box.x -= 5;
 			}
 		}
+		horChunk++;
 	}
 	//Down transition
 	if (player.box.y + player.box.h > WH)
@@ -173,6 +181,7 @@ void PosUp(float dt)
 				terrain[i].box.y -= 5;
 			}
 		}
+		verChunk++;
 	}
 	//Up transition
 	if (player.box.y < 0)
@@ -185,6 +194,7 @@ void PosUp(float dt)
 				terrain[i].box.y += 5;
 			}
 		}
+		verChunk--;
 	}
 	//Left transition
 	if (player.box.x < 0)
@@ -197,6 +207,7 @@ void PosUp(float dt)
 				terrain[i].box.x += 5;
 			}
 		}
+		horChunk--;
 	}
 }
 
@@ -214,6 +225,7 @@ void ColUp(float dt)
 			player.box.y = terrain[i].box.y  - player.box.h;
 			player.vely = 0;
 			jump = true;
+			stomp = false;
 		}
 		//Keeps the player below a rectangle
 		else if ((SDL_PointInRect(&right_top, &terrain[i].box) || SDL_PointInRect(&left_top, &terrain[i].box)) && pastplayer.box.y >= terrain[i].box.y + terrain[i].box.h)
@@ -227,6 +239,7 @@ void ColUp(float dt)
 			player.box.x = terrain[i].box.x - player.box.w;
 			jump = true;
 			wallcling = true;
+			stomp = false;
 		}
 		//Keeps the player to the right of a rectangle
 		else if (SDL_PointInRect(&left_bottom, &terrain[i].box) || SDL_PointInRect(&left_top, &terrain[i].box))
@@ -234,6 +247,7 @@ void ColUp(float dt)
 			player.box.x = terrain[i].box.x + terrain[i].box.w;
 			jump = true;
 			wallcling = true;
+			stomp = false;
 		}
 	}
 }
@@ -268,5 +282,5 @@ void RenderFrame(float interpolation)
 		SDL_RenderFillRect(gRenderer, &terrain[i].box);
 	}
 	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
-	SDL_RenderCopyEx(gRenderer, TEXgun, NULL, &gun.box, result, &gunCenter, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(gRenderer, TEXgun, NULL, &gun.box, result, &rotationCenter, SDL_FLIP_NONE);
 }
