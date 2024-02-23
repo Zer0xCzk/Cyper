@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include "object.h"
 #include <math.h>
+#include "bullet.h"
 
 
 void Update(float dt);
@@ -48,6 +49,8 @@ const int ammount = 30;
 Object player = { 0, 600, 50, 50, 800, 0};
 Object pastplayer = player;
 Object terrain[ammount] = { 0, 0, 0, 0, 0, 0};
+Bullet bullet[50] = {0, 0, 0, 30, 10, 100, 0};
+double bulletCooldown = 0;
 unsigned int level = 0;
 int horChunk = 0, verChunk = 0;
 int deltaX, deltaY, mouseX, mouseY;
@@ -115,6 +118,23 @@ void TerGen()
 	gen = true;
 }
 
+void newProjectile() 
+{
+	for(int i = 0; i <= 50; i++) {
+		if( bullet[i].state != 1 && bulletCooldown == 0) {
+			bullet[i].state = 1;
+			bullet[i].angle = result;
+			bullet[i].box.x = player.box.x;
+			bullet[i].box.y = player.box.y;
+			bulletCooldown = 60;
+			return;
+		}
+		else {
+			
+		}
+	}
+}
+
 void PosUp(float dt)
 {
 	//Gun rotation
@@ -140,6 +160,7 @@ void PosUp(float dt)
 		player.vely = -800;
 		jump = false;
 		wallcling = false;
+		stomp = false;
 	}
 	if (IsKeyDown(SDL_SCANCODE_D) && !stomp) {
 		player.box.x += (int)(player.speed * dt + 0.5f);
@@ -147,9 +168,13 @@ void PosUp(float dt)
 			wallcling = false;
 		}
 	}
-	if (IsKeyDown(SDL_SCANCODE_S) && !wallcling){
+	if (IsKeyDown(SDL_SCANCODE_S) && !wallcling) {
 		player.vely = 2000;
 		stomp = true;
+		jump = true;
+	}
+	if (IsKeyDown(SDL_SCANCODE_SPACE)) {
+		newProjectile();
 	}
 	//Check if we're clinging to a wall
 	if (!wallcling) {
@@ -171,8 +196,7 @@ void PosUp(float dt)
 		horChunk++;
 	}
 	//Down transition
-	if (player.box.y + player.box.h > WH)
-	{
+	if (player.box.y + player.box.h > WH) {
 		while (player.box.y > 0)
 		{
 			player.box.y -= 5;
@@ -184,8 +208,7 @@ void PosUp(float dt)
 		verChunk++;
 	}
 	//Up transition
-	if (player.box.y < 0)
-	{
+	if (player.box.y < 0) {
 		while (player.box.y + player.box.h < WH)
 		{
 			player.box.y += 5;
@@ -197,8 +220,7 @@ void PosUp(float dt)
 		verChunk--;
 	}
 	//Left transition
-	if (player.box.x < 0)
-	{
+	if (player.box.x < 0) {
 		while (player.box.x + player.box.w < WW)
 		{
 			player.box.x += 5;
@@ -208,6 +230,36 @@ void PosUp(float dt)
 			}
 		}
 		horChunk--;
+	}
+	//Moving bullets
+	for(int i = 0; i <=0; i++) {
+		if (bullet[i].state == 0) break;
+		else {
+			//First Quadrant
+			if(bullet[i].angle > 0 && bullet[i].angle <= 90) {
+				double angleB = 360 - bullet[i].angle;
+				bullet[i].box.x += (int)((bullet[i].speed * sin(bullet[i].angle)) * sin(90));
+				bullet[i].box.y -= (int)((bullet[i].speed * sin(angleB)) * sin(90));
+			}
+			//Second Quadrant
+			if(bullet[i].angle > 90 && bullet[i].angle <= 180) {
+				double angleB = 360 - bullet[i].angle;
+				bullet[i].box.x -= (int)((bullet[i].speed * sin(bullet[i].angle)) * sin(90));
+				bullet[i].box.y -= (int)((bullet[i].speed * sin(angleB)) * sin(90));
+			}
+			//Third Quadrant
+			if(bullet[i].angle > 180 && bullet[i].angle <= 270) {
+				double angleB = 360 - bullet[i].angle;
+				bullet[i].box.x -= (int)((bullet[i].speed * sin(bullet[i].angle)) * sin(90));
+				bullet[i].box.y += (int)((bullet[i].speed * sin(angleB)) * sin(90));
+			}
+			//Fourth Quadrant
+			if(bullet[i].angle > 270 && bullet[i].angle < 360) {
+				double angleB = 360 - bullet[i].angle;
+				bullet[i].box.x -= (int)((bullet[i].speed * sin(bullet[i].angle)) * sin(90));
+				bullet[i].box.y -= (int)((bullet[i].speed * sin(angleB)) * sin(90));
+			}
+		}
 	}
 }
 
@@ -265,6 +317,8 @@ void Update(float dt)
 	{
 		ExitGame();
 	}
+	if(bulletCooldown < 0) bulletCooldown = 0;
+	else bulletCooldown -= 0.1;
 }
 
 void RenderFrame(float interpolation)
@@ -283,4 +337,10 @@ void RenderFrame(float interpolation)
 	}
 	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
 	SDL_RenderCopyEx(gRenderer, TEXgun, NULL, &gun.box, result, &rotationCenter, SDL_FLIP_NONE);
+	for (int i = 0; i <= 50; i++) {
+		if(bullet[i].state == 0) break;
+		else {
+			SDL_RenderFillRect(gRenderer, &bullet[i].box);
+		}
+	}
 }

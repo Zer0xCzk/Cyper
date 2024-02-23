@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 # Rename the project here
-project(SDLGame VERSION 1.0 LANGUAGES CXX)
+project(SDLGame VERSION 0.0.1 LANGUAGES CXX)
 
 # Add your sources here
 set(SOURCES
@@ -11,12 +11,14 @@ set(SOURCES
 	src/object.h
 	src/sprite.h
 	src/sprite.cpp
+	src/bullet.h
 )
 
 source_group("Headers" FILES
 	src/engine.h
 	src/object.h
 	src/sprite.h
+	src/bullet.h
 )
 
 # Set a default build type if none was specified
